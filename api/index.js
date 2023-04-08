@@ -2,6 +2,7 @@
 //Hasło: nFKiapngQ6dn3aoF
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const app = express();
 const cors = require("cors");
 
@@ -14,12 +15,7 @@ app.use(
   })
 );
 
-mongoose.connect(
-  "mongodb+srv://booking:nFKiapngQ6dn3aoF@cluster0.woyqt9j.mongodb.net/?retryWrites=true&w=majority"
-);
-mongoose2.connect(
-  "mongodb+srv://booking:nFKiapngQ6dn3aoF@cluster0.woyqt9j.mongodb.net/?retryWrites=true&w=majority"
-);
+mongoose.connect(process.env.MONGO_URL);
 
 app.get("/test", (req, res) => {
   res.json("test ok");
@@ -27,6 +23,7 @@ app.get("/test", (req, res) => {
 
 app.post("/register", (req, res) => {
   const { name, email, password } = req.body;
+
   res.json({ name, email, password });
 });
 
