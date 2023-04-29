@@ -12,6 +12,7 @@ import Layout from "./Layout";
 import axios from "axios";
 import { useEffect } from "react";
 import { UserContextProvider } from "./UserContext.jsx";
+import NewPlacePage from "./pages/NewPlacePage";
 
 axios.defaults.baseURL = "http://127.0.0.1:4000";
 axios.defaults.withCredentials = true;
@@ -28,6 +29,7 @@ function App() {
           <Route path="/account/bookings" element={<Account />} />
           <Route path="/account/profile" element={<Account />} />
           <Route path="/account/places" element={<Account />} />
+          <Route path="/account/places/new" element={<NewPlacePage />} />
         </Route>
       </Routes>
     </UserContextProvider>

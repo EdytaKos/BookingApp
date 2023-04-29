@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 export default function PlacesPage() {
-  //const { action } = location.useLocation().pathname;
+  const action = window.location.pathname;
+  // let action = location.pathname;
+  console.log(action);
   return (
     <div>
       <div className="text-center">

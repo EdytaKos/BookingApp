@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function AccountPage() {
   const [redirect, setRedirect] = useState(null);
-  const { ready, user, setUser, setReady } = useContext(UserContext);
+  const { ready, user, setUser } = useContext(UserContext);
 
   const location = useLocation();
   let subpage = location.pathname;
@@ -17,7 +17,7 @@ export default function AccountPage() {
     subpage = "/account/profile";
   }
 
-  if (ready && !user) {
+  if (ready && !user && !redirect) {
     return <Navigate to={"/login"} />;
   }
 
@@ -33,7 +33,6 @@ export default function AccountPage() {
   // console.log(subpage);
 
   function linkClasses(type = null) {
-    console.log(type);
     let classes = "py-2 px-6";
     if (type === subpage) {
       classes += " bg-primary text-white rounded-full";
