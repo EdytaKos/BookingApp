@@ -26,8 +26,8 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/account" element={<Account />} />
           <Route path="/account/bookings" element={<Account />} />
+          <Route path="/account/profile" element={<Account />} />
           <Route path="/account/places" element={<Account />} />
-          
         </Route>
       </Routes>
     </UserContextProvider>

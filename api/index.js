@@ -1,5 +1,6 @@
 // username: booking
 //Hasło: nFKiapngQ6dn3aoF
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
@@ -94,11 +95,11 @@ app.get("/profile", (req, res) => {
   }
 });
 
+app.use(cookieParser());
 
-app.use(cookieParser())
-app.post('/logout', (res,req)=>{
-  axios.defaults.withCredentials = true;
-  res.cookie('token', '').json(true);
+app.post("/logout", (res, req) => {
+  //axios.defaults.withCredentials = true;
+  res.cookie("token", "").json(true);
 });
 
 app.listen(4000);
