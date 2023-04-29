@@ -8,6 +8,7 @@ const User = require("./models/User.js");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const imageDownloader = require("image-downloader");
 
 require("dotenv").config();
 
@@ -17,6 +18,7 @@ const jwtSecret = "hfowiefhncposnpwsncpev";
 
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 app.use(
   cors({
@@ -38,10 +40,6 @@ mongoose
   .connect(process.env.MONGO_URL)
   .then(() => console.log("connected to database"))
   .catch((e) => console.log(e));
-
-app.get("/test", (req, res) => {
-  res.json("test ok");
-});
 
 app.post("/register", async (req, res) => {
   const { name, email, password } = req.body;
@@ -97,9 +95,19 @@ app.get("/profile", (req, res) => {
 
 app.use(cookieParser());
 
-app.post("/logout", (res, req) => {
+app.post("/logout", (req, res) => {
   //axios.defaults.withCredentials = true;
   res.cookie("token", "").json(true);
+});
+
+app.post("/upload-by-link", async (req, res) => {
+  const { link } = req.body;
+  const newName = "photo" + Date.now() + ".jpg";
+  await imageDownloader.image({
+    url: link,
+    dest: __dirname + "/uploads/" + newName,
+  });
+  res.json(newName);
 });
 
 app.listen(4000);
