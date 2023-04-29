@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import Account from "./pages/Account";
 import Layout from "./Layout";
 import axios from "axios";
 import { useEffect } from "react";
@@ -23,6 +24,10 @@ function App() {
           <Route index element={<IndexPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/account/bookings" element={<Account />} />
+          <Route path="/account/profile" element={<Account />} />
+          <Route path="/account/places" element={<Account />} />
         </Route>
       </Routes>
     </UserContextProvider>
