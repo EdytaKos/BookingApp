@@ -5,6 +5,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const User = require("./models/User.js");
+const Place = require("./models/Place.js");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -124,6 +125,39 @@ app.post("/upload", photosMiddleware.array("photos", 100), (req, res) => {
     uploadedFiles.push(newPath.replace("uploads\\", ""));
   }
   res.json(uploadedFiles);
+});
+
+app.post("/places", (req, res) => {
+  const { token } = req.cookies;
+  const {
+    title,
+    address,
+    addedPhotos,
+    description,
+    perks,
+    extraInfo,
+    checkIn,
+    checkOut,
+    maxGuests,
+  } = req.body;
+
+  jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+    if (err) throw err;
+    const PlaceDoc = Place.create({
+      owner: userData.id,
+      title,
+      address,
+      addedPhotos,
+      description,
+      perks,
+      extraInfo,
+      checkIn,
+      checkOut,
+      maxGuests,
+    });
+
+    res.json(PlaceDoc);
+  });
 });
 
 app.listen(4000);

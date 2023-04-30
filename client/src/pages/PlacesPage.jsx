@@ -4,10 +4,11 @@ import { useLocation } from "react-router-dom";
 export default function PlacesPage() {
   const action = window.location.pathname;
   // let action = location.pathname;
-  console.log(action);
   return (
     <div>
       <div className="text-center">
+        Lista moich miejsc
+        <br />
         <Link
           className="inline-flex bg-primary text-white py-2 px-6 rounded-full"
           to={"/account/places/new"}
@@ -29,7 +30,6 @@ export default function PlacesPage() {
           Dodaj nowe miejsce
         </Link>
       </div>
-      my places
     </div>
   );
 }
