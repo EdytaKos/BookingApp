@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Perks from "../Perks";
 import PhotosUploader from "../PhotosUploader";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 
 export default function NewPlacePage() {
+  const { id } = useParams();
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [addedPhotos, setAddedPhotos] = useState([]);
@@ -15,6 +16,24 @@ export default function NewPlacePage() {
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
   const [redirect, setRedirect] = useState("");
+
+  useEffect(() => {
+    if (!id) {
+      return;
+    }
+    axios.get("places/" + id).then((res) => {
+      const { data } = res;
+      setTitle(data.title);
+      setAddress(data.address);
+      setAddedPhotos(data.photos);
+      setDescription(data.description);
+      setPerks(data.perks);
+      setExtraInfo(data.extraInfo);
+      setCheckIn(data.checkIn);
+      setCheckOut(data.checkOut);
+      setMaxGuests(data.maxGuests);
+    });
+  }, [id]);
 
   function inputHeader(text) {
     return <h2 className="text-2xl mt-4">{text}</h2>;
@@ -33,9 +52,10 @@ export default function NewPlacePage() {
     );
   }
 
-  async function addNewPlace(ev) {
+  async function savePlace(ev) {
     ev.preventDefault();
     const placeData = {
+      id,
       title,
       address,
       addedPhotos,
@@ -46,8 +66,15 @@ export default function NewPlacePage() {
       checkOut,
       maxGuests,
     };
-    const { data } = await axios.post("/places", placeData);
-    setRedirect("/account/places");
+    if (id) {
+      //update
+      await axios.put("/places/" + id, { ...placeData });
+      setRedirect("/account/places");
+    } else {
+      //new place
+      await axios.post("/places", placeData);
+      setRedirect("/account/places");
+    }
   }
 
   if (redirect) {
@@ -56,7 +83,7 @@ export default function NewPlacePage() {
 
   return (
     <div>
-      <form onSubmit={addNewPlace}>
+      <form onSubmit={savePlace}>
         {preInput(
           "Tytuł",
           "Tytuł Twojego miejsca powinien być krótki i chwytliwy"
