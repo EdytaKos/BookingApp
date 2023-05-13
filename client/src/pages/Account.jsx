@@ -8,26 +8,16 @@ import { useState } from "react";
 
 export default function AccountPage() {
   const [redirect, setRedirect] = useState(null);
-  const { ready, user, setUser } = useContext(UserContext);
+  const { ready, user, setUser, setReady } = useContext(UserContext);
 
   const location = useLocation();
   let subpage = location.pathname;
-
-  function linkClasses(type = null) {
-    let classes = "inline-flex gap-1 py-2 px-6 rounded-full";
-    if (type === subpage) {
-      classes += " bg-primary text-white";
-      // } else {
-      //   classes += "bg-gray-200";
-    }
-    return classes;
-  }
 
   if (subpage === undefined) {
     subpage = "/account/profile";
   }
 
-  if (ready && !user && !redirect) {
+  if (ready && !user) {
     return <Navigate to={"/login"} />;
   }
 
@@ -41,6 +31,17 @@ export default function AccountPage() {
 
   // let { subpage } = useParams();
   // console.log(subpage);
+
+  function linkClasses(type = null) {
+    console.log(type);
+    let classes = "py-2 px-6";
+    if (type === subpage) {
+      classes += " bg-primary text-white rounded-full";
+      // } else {
+      //   classes += "bg-gray-200";
+    }
+    return classes;
+  }
 
   async function logout() {
     await axios.post("/logout");
