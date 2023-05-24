@@ -12,7 +12,17 @@ export default function LoginPage() {
   async function handleLoginSubmit(ev) {
     ev.preventDefault();
     try {
-      const { data } = await axios.post("/login", { email, password });
+      const { data } = await axios.post(
+        "/login",
+        { email, password },
+        {
+          headers: {
+            Origin: "http://localhost:5173",
+            "Access-Control-Request-Method": "POST",
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setUser(data);
       alert("Login successful");
       setRedirect(true);

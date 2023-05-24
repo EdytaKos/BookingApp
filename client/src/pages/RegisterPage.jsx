@@ -10,11 +10,21 @@ export default function RegisterPage() {
   async function registerUser(ev) {
     ev.preventDefault();
     try {
-      await axios.post("/register", {
-        name,
-        email,
-        password,
-      });
+      await axios.post(
+        "/register",
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: {
+            Origin: "http://localhost:5173",
+            "Access-Control-Request-Method": "POST",
+            "Content-Type": "application/json",
+          },
+        }
+      );
       alert("Registration successful. Now you can log in");
     } catch (e) {
       alert("Registration filed. Please try again later");
