@@ -51,7 +51,11 @@ export default function Header() {
 
       <Link
         to={user?'/account':"/login"}
+<<<<<<< HEAD
         className="flex items-center gap-2 border border-textprim rounded-full py-2 px-4 bg-inputBg"
+=======
+        className="flex items-center gap-2 border border-textsec rounded-full py-2 px-4 bg-inputBg text-textsec"
+>>>>>>> ca7aa05 (Poprawka frontendu dla zalogowanego użytkownika)
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

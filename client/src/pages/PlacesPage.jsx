@@ -42,7 +42,7 @@ export default function PlacesPage() {
           places.map((place) => (
             <Link
               to={"/account/places/" + place._id}
-              className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl"
+              className="flex cursor-pointer gap-4 bg-inputBg p-4 rounded-2xl text-textsec"
             >
               <div className="flex w-32 h-32 bg-gray-300 shrink-0">
                 {place.photos.length > 0 && (

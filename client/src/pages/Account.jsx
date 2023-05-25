@@ -54,7 +54,7 @@ export default function AccountPage() {
 
   return (
     <div>
-      <nav className="w-full flex justify-center mt-8 gap-2">
+      <nav className="w-full flex justify-center mt-8 gap-2 text-textsec">
         <Link
           className={linkClasses("/account/profile")}
           to={"/account/profile"}
@@ -114,7 +114,7 @@ export default function AccountPage() {
         </Link>
       </nav>
       {subpage === "/account/profile" && (
-        <div className="text-center max-w-lg mx-auto">
+        <div className="text-center max-w-lg mx-auto text-textsec">
           Zalogowano jako {user.name} ({user.email})
           <Link to={"/"}>
             <button onClick={logout} className="primary max-w-sm mt-2">

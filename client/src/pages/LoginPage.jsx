@@ -38,7 +38,11 @@ export default function LoginPage() {
             onChange={(ev) => setEmail(ev.target.value)}
           />
           <input
+<<<<<<< HEAD
             className = "bg-inputBg border-textsec text-textsec"  
+=======
+            className = "bg-inputBg border-textsec text-textsec"
+>>>>>>> ca7aa05 (Poprawka frontendu dla zalogowanego użytkownika)
             type="password"
             placeholder="Hasło"
             value={password}

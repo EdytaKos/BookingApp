@@ -82,13 +82,14 @@ export default function NewPlacePage() {
   }
 
   return (
-    <div>
+    <div className="text-textsec">
       <form onSubmit={savePlace}>
         {preInput(
           "Tytuł",
           "Tytuł Twojego miejsca powinien być krótki i chwytliwy"
         )}
         <input
+          className="flex gap-2 border border-textsec rounded-full py-2 px-4 bg-inputBg"
           type="text"
           value={title}
           onChange={(ev) => setTitle(ev.target.value)}
@@ -96,6 +97,7 @@ export default function NewPlacePage() {
         />
         {preInput("Adres", "Adres Twojego miejsca")}
         <input
+          className="flex gap-2 border border-textsec rounded-full py-2 px-4 bg-inputBg"
           type="text"
           value={address}
           onChange={(ev) => setAddress(ev.target.value)}
@@ -105,6 +107,7 @@ export default function NewPlacePage() {
         <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos} />
         {preInput("Opis", "Opis miejsca")}
         <textarea
+          className="flex gap-2 border border-textsec px-4 bg-inputBg"
           value={description}
           onChange={(ev) => setDescription(ev.target.value)}
         ></textarea>
@@ -120,6 +123,7 @@ export default function NewPlacePage() {
           "Zasady obowiązujące w Twoim miejscu, itp..."
         )}
         <textarea
+          className="flex gap-2 border border-textsec px-4 bg-inputBg"
           value={extraInfo}
           onChange={(ev) => setExtraInfo(ev.target.value)}
         />
@@ -131,6 +135,7 @@ export default function NewPlacePage() {
           <div>
             <h3 className="mt-2 -mb-1">Godzina zameldowania</h3>
             <input
+              className="flex gap-2 border border-textsec rounded-full py-2 px-4 bg-inputBg"
               type="text"
               value={checkIn}
               onChange={(ev) => setCheckIn(ev.target.value)}
@@ -140,6 +145,7 @@ export default function NewPlacePage() {
           <div>
             <h3 className="mt-2 -mb-1">Godzina wymeldowania</h3>
             <input
+              className="flex gap-2 border border-textsec rounded-full py-2 px-4 bg-inputBg"
               type="text"
               value={checkOut}
               onChange={(ev) => setCheckOut(ev.target.value)}
@@ -149,6 +155,7 @@ export default function NewPlacePage() {
           <div>
             <h3 className="mt-2 -mb-1">Maksymalna liczba gości</h3>
             <input
+              className="flex gap-2 border border-textsec rounded-full py-2 px-4 bg-inputBg"
               type="number"
               value={maxGuests}
               onChange={(ev) => setMaxGuests(ev.target.value)}
