@@ -209,4 +209,9 @@ app.put("/places/:id", async (req, res) => {
   });
 });
 
+
+app.get('/places', async (req, res)=>{
+  res.json(await Place.find());
+})
+
 app.listen(4000);
