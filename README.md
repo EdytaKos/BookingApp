@@ -20,4 +20,14 @@
 
 - Baza danych: ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
+## Uruchomienie 
+```cd api
+node index.js
+```
+
+W nowym terminalu
+``` cd client
+ npm run dev```
+
+## 
 
