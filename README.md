@@ -22,6 +22,11 @@
 
 ## Uruchomienie 
 ```
+npm install
+```
+
+
+```
 cd api
 ```
 
@@ -30,6 +35,12 @@ node index.js
 ```
 
 W nowym terminalu
+
+```
+npm install
+```
+
+
 ``` 
 cd client
 ```
