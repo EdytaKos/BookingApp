@@ -22,12 +22,19 @@
 
 ## Uruchomienie 
 ```cd api
+```
+
+```
 node index.js
 ```
 
 W nowym terminalu
 ``` cd client
- npm run dev```
+```
 
-## 
+```
+ npm run dev
+ ```
+
+
 
