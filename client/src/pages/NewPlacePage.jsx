@@ -15,6 +15,7 @@ export default function NewPlacePage() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
+  const [price, setPrice] = useState(100);
   const [redirect, setRedirect] = useState("");
 
   useEffect(() => {
@@ -32,6 +33,7 @@ export default function NewPlacePage() {
       setCheckIn(data.checkIn);
       setCheckOut(data.checkOut);
       setMaxGuests(data.maxGuests);
+      setPrice(data.price);
     });
   }, [id]);
 
@@ -65,6 +67,7 @@ export default function NewPlacePage() {
       checkIn,
       checkOut,
       maxGuests,
+      price,
     };
     if (id) {
       //update
@@ -127,7 +130,7 @@ export default function NewPlacePage() {
           "Zameldowanie/wymeldowanie",
           "Dodaj godziny zameldownia oraz wymeldowania"
         )}
-        <div className="grid gap-2 sm:grid-cols-3">
+        <div className="grid gap-2 grid-cols-2 md:grid-cols-4">
           <div>
             <h3 className="mt-2 -mb-1">Godzina zameldowania</h3>
             <input
@@ -152,6 +155,14 @@ export default function NewPlacePage() {
               type="number"
               value={maxGuests}
               onChange={(ev) => setMaxGuests(ev.target.value)}
+            />
+          </div>
+          <div>
+            <h3 className="mt-2 -mb-1">Cena za noc</h3>
+            <input
+              type="number"
+              value={price}
+              onChange={(ev) => setPrice(ev.target.value)}
             />
           </div>
         </div>
