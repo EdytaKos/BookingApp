@@ -85,6 +85,8 @@ export default function NewPlacePage() {
   }
 
   return (
+    <div className="grid grid-cols-[2fr_4fr_2fr]">
+    <div></div>
     <div className="mx-12">
       <form onSubmit={savePlace}>
         {preInput(
@@ -168,6 +170,8 @@ export default function NewPlacePage() {
         </div>
         <button className="primary my-4">Zapisz</button>
       </form>
+    </div>
+    <div></div>
     </div>
   );
 }

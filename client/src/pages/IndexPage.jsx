@@ -11,8 +11,10 @@ export default function IndexPage(){
     });
   }, []);
   return (
-      <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-      {places.length > 0 && places.map(place => (
+    <div className="grid grid-cols-[1fr_9fr_1fr]">
+   <div></div>
+    <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+        {places.length > 0 && places.map(place => (
           <Link to = {'/place/'+place._id}>
             <div className="bg-gray-500 mb-2 rounded-2xl flex">
              {place.photos?.[0] && (
@@ -26,6 +28,8 @@ export default function IndexPage(){
             </div>
           </Link>
         ))}
+      </div>
+      <div></div>
       </div>
     );
 }

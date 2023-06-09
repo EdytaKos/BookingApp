@@ -14,6 +14,8 @@ export default function PlacesPage() {
   }, []);
 
   return (
+    <div className="grid grid-cols-[1fr_10fr_1fr]">
+    <div></div>
     <div>
       <div className="text-center mx-8">
         <Link
@@ -59,6 +61,8 @@ export default function PlacesPage() {
             </Link>
           ))}
       </div>
+    </div>
+    <div></div>
     </div>
   );
 }
