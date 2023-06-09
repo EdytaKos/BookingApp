@@ -15,7 +15,7 @@ export default function PlacesPage() {
 
   return (
     <div>
-      <div className="text-center">
+      <div className="text-center mx-8">
         <Link
           className="mt-4 inline-flex bg-primary text-white py-2 px-6 rounded-full"
           to={"/account/places/new"}

@@ -85,7 +85,7 @@ export default function NewPlacePage() {
   }
 
   return (
-    <div>
+    <div className="mx-12">
       <form onSubmit={savePlace}>
         {preInput(
           "Tytuł",

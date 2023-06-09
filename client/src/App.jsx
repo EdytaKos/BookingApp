@@ -8,6 +8,7 @@ import IndexPage from "./pages/IndexPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Account from "./pages/Account";
+import SinglePlace from "./pages/SinglePlace";
 import Layout from "./Layout";
 import axios from "axios";
 import { useEffect } from "react";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/account/places" element={<Account />} />
           <Route path="/account/places/new" element={<NewPlacePage />} />
           <Route path="/account/places/:id" element={<NewPlacePage />} />
+          <Route path="/place/:id" element={<SinglePlace />}/>
         </Route>
       </Routes>
     </UserContextProvider>
