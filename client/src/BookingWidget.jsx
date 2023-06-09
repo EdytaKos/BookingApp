@@ -1,5 +1,6 @@
 import { useState } from "react";
 import {differenceInCalendarDays} from "date-fns";
+import axios from "axios";
 
 export default function BookingWidget({place}) {
     const [checkIn, setCheckIn] = useState('');
@@ -7,9 +8,25 @@ export default function BookingWidget({place}) {
     const [numberOfGuests, setNumberOfGuests] = useState(1);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [redirect,setRedirect] = useState('');
+
     let numberOfNights = 0;
     if (checkIn && checkOut) {
         numberOfNights = differenceInCalendarDays(new Date (checkOut), new Date (checkIn));
+    }
+    
+    async function bookThisPlace() {
+        const response = await axios.post('/bookings' ,{
+            checkIn, checkOut, numberOfGuests, name, email,
+            place:place._id,
+            price:numberOfNights * place.price,
+        }); 
+        const bookingId = response.data._id;
+        setRedirect(`/account/bookings/${bookingId}`)
+    }
+
+    if (redirect) {
+        return <Navigate to={redirect} />
     }
 
     return(
@@ -17,7 +34,7 @@ export default function BookingWidget({place}) {
         <div className="text-2xl text-center">
             Cena: {place.price} zł / za noc
         </div>
-        <div className="border rounded-2xl my-4">
+        <div className="border rounded-2xl my-4 mt-4">
         <div className="flex">
             <div className="py-3 px-4">
                 <label>Data zameldowania </label>
@@ -52,11 +69,13 @@ export default function BookingWidget({place}) {
                     </div> 
               )}
         </div>
-        <button className="primary mt-4">
-        Zarezerwuj miejsce
         {numberOfNights > 0 && (
-            <span>{numberOfNights * place.price} zł</span>
+            <div className="text-center">
+                <h2 className="font-semibold">Łączna kwota: {numberOfNights * place.price} zł</h2>
+            </div>
         )}
+        <button onClick={bookThisPlace} className="primary mt-4">
+            Zarezerwuj miejsce
         </button>
     </div>
     );

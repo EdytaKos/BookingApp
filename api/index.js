@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const User = require("./models/User.js");
 const Place = require("./models/Place.js");
+const Booking = require("./models/Booking.js");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
@@ -217,15 +218,29 @@ app.get('/places', async (req, res)=>{
   res.json(await Place.find());
 });
 
-app.post ('/booking', (req, res) => {
+app.post ('/bookings', (req, res) => {
   const {
     place, 
     checkIn, 
     checkOut, 
     numberOfGuests, 
     name, 
-    email
+    email,
+    price,
   } = req.body;
-})
+  Booking.create({
+    place, 
+    checkIn, 
+    checkOut, 
+    numberOfGuests, 
+    name, 
+    email,
+    price,
+  }).then((doc) => {
+    res.json(doc);
+  }).catch((err) => {
+    throw err;
+  })
+});
 
 app.listen(4000);
