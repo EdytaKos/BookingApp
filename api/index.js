@@ -213,9 +213,19 @@ app.put("/places/:id", async (req, res) => {
   });
 });
 
-
 app.get('/places', async (req, res)=>{
   res.json(await Place.find());
+});
+
+app.post ('/booking', (req, res) => {
+  const {
+    place, 
+    checkIn, 
+    checkOut, 
+    numberOfGuests, 
+    name, 
+    email
+  } = req.body;
 })
 
 app.listen(4000);
