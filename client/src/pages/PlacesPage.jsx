@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import PlaceImg from "../PlaceImg";
 
 export default function PlacesPage() {
   const action = window.location.pathname;
@@ -47,12 +48,7 @@ export default function PlacesPage() {
               className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl"
             >
               <div className="flex w-32 h-32 bg-gray-300 shrink-0">
-                {place.photos.length > 0 && (
-                  <img
-                    className="object-cover"
-                    src={"http://localhost:4000/uploads/" + place.photos[0]}
-                  ></img>
-                )}
+                <PlaceImg place={place}/>
               </div>
               <div className="grow-0 shrink">
                 <h2 className="text-xl">{place.title}</h2>
