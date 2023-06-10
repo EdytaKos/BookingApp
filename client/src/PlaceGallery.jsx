@@ -1,23 +1,7 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import BookingWidget from "../BookingWidget";
-import AddressLink from "../AddressLink";
+import {useState } from "react";
 
-export default function SinglePlace() {
-    const {id} = useParams();
-    const [place, setPlace] = useState(null);
+export default function PlaceGallery({place}) {
     const [showAllPhotos, setShowAllPhotos] = useState(false);
-    useEffect(() => {
-        if(!id){
-            return;
-        }
-        axios.get(`/places/${id}`).then(response => {
-            setPlace(response.data);
-          });
-    }, [id]);
-
-    if (!place) return '';
     
     if(showAllPhotos) {
         return(
@@ -41,17 +25,11 @@ export default function SinglePlace() {
                 </div>
                 <div className="bg-black"></div>
             </div>
-        )
+        );
     }
 
     return (
-        <div className="mt-4 bg-gray-100 -mx-8 px-8 pt-8 grid grid-cols-[1fr_3fr_1fr]">
-        <div></div>
-        <div>
-            <h1 className="text-3xl">{place.title}</h1>
-            <AddressLink>{place.address}</AddressLink>
-            <div className="relative">
-                <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden">
+        <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden">
                     <div>
                         {place.photos?.[0] && (
                             <div>
@@ -73,29 +51,5 @@ export default function SinglePlace() {
                         </button>
                     </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] mt-4 mb-8 gap-8">
-                    <div>
-                        <div className="my-5">
-                            <h2 className="font-semibold text-2xl">Opis</h2>
-                            {place.description}
-                        </div>
-                        Godzina zameldownia: {place.checkIn}:00 <br/>
-                        Godzina wymeldowania: {place.checkOut}:00 <br/>
-                        Maksymalna liczba gości: {place.maxGuests}
-                    </div>
-                    <div>
-                        <BookingWidget place={place}/>
-                    </div>
-                </div>
-                <div className="mt-2 bg-white -mx-8 px-8 pt-8 border">
-                    <div className="mt-1">
-                        <h1 className="font-semibold text-2xl">Dodatkowe informacje</h1>
-                    </div>
-                    <div className="mb-4 mt-1 text-sm text-gray-700 leading-5">{place.extraInfo}</div>
-                </div>
-            </div>
-            </div>
-            <div></div>
-        </div>
     );
 }
