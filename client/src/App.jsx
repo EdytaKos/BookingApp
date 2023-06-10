@@ -9,6 +9,8 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import Account from "./pages/Account";
 import SinglePlace from "./pages/SinglePlace";
+import BookingsPage from "./pages/BookingsPage";
+import SingleBookingPage from "./pages/SingleBookingPage";
 import Layout from "./Layout";
 import axios from "axios";
 import { useEffect } from "react";
@@ -27,12 +29,13 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/account/bookings" element={<Account />} />
           <Route path="/account/profile" element={<Account />} />
           <Route path="/account/places" element={<Account />} />
           <Route path="/account/places/new" element={<NewPlacePage />} />
           <Route path="/account/places/:id" element={<NewPlacePage />} />
           <Route path="/place/:id" element={<SinglePlace />}/>
+          <Route path="/account/bookings" element={<BookingsPage />} />
+          <Route path="/account/bookings/:id" element={<SingleBookingPage />} />
         </Route>
       </Routes>
     </UserContextProvider>

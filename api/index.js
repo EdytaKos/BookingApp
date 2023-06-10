@@ -13,6 +13,8 @@ const cookieParser = require("cookie-parser");
 const imageDownloader = require("image-downloader");
 const multer = require("multer");
 const fs = require("fs");
+const { resolve } = require("path");
+const { rejects } = require("assert");
 
 require("dotenv").config();
 
@@ -30,6 +32,15 @@ app.use(
     origin: "http://127.0.0.1:5173",
   })
 );
+
+function getUserDataFromReq(req) {
+  return new Promise((resolve, reject) => {
+    jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+      if (err) throw err;
+      resolve(userData);
+    });
+  });
+}
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://127.0.0.1:5173");
@@ -218,7 +229,8 @@ app.get('/places', async (req, res)=>{
   res.json(await Place.find());
 });
 
-app.post ('/bookings', (req, res) => {
+app.post ('/bookings', async (req, res) => {
+  const userData = await getUserDataFromReq(req);
   const {
     place, 
     checkIn, 
@@ -236,11 +248,18 @@ app.post ('/bookings', (req, res) => {
     name, 
     email,
     price,
+    user:userData.id,
   }).then((doc) => {
     res.json(doc);
   }).catch((err) => {
     throw err;
   })
+});
+
+
+app.get('/bookings', async (req, res) => {
+  const userData = await getUserDataFromReq(req);
+  res.json(await Booking.find({user:userData.id}).populate('place'));
 });
 
 app.listen(4000);
