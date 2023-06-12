@@ -16,6 +16,7 @@ export default function BookingWidget({place}) {
     useEffect(() => {
         if (user) {
             setName(user.name);
+            setEmail(user.email);
         }
     }, [user]);
 

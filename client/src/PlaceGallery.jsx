@@ -5,9 +5,9 @@ export default function PlaceGallery({place}) {
     
     if(showAllPhotos) {
         return(
-            <div className="absolute inset-0 bg-black text-white min-h-screen grid grid-cols-[1fr_4fr_1fr]">
-            <div className="bg-black"></div>    
-            <div className="p-8 grid gap-4 bg-black">
+            <div className="absolute inset-0 bg-darkBg text-white min-h-screen grid grid-cols-[1fr_4fr_1fr]">
+            <div className="bg-darkBg"></div>    
+            <div className="p-8 grid gap-4 bg-darkBg">
                     <div>
                         <h2 className="text-3xl mr-36">{place.title}</h2>    
                         <button onClick={() => setShowAllPhotos(false)} className="fixed right-12 top-6 flex gap-2 py-2 px-4 rounded-2xl shadow shadow-black-100 bg-white text-black">
@@ -23,7 +23,7 @@ export default function PlaceGallery({place}) {
                         </div>
                     ))}
                 </div>
-                <div className="bg-black"></div>
+                <div className="bg-darkBg"></div>
             </div>
         );
     }

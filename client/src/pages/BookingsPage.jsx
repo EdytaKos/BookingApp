@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react"
 import PlaceImg from "../PlaceImg";
 import BookingDates from "../BookingDates";
+import AccountNav from "../AccountNav";
 import {Link} from "react-router-dom";
 
 export default function BookingsPage () {
@@ -13,9 +14,10 @@ export default function BookingsPage () {
     }, []);
 
     return (
-        <div className="grid grid-cols-[1fr_3fr_1fr] mt-8">
+        <div className="grid grid-cols-[1fr_3fr_1fr]">
         <div></div>
         <div>
+        <AccountNav />
         {bookings?.length > 0 && bookings.map(booking =>(
             <Link to={`/account/bookings/${booking._id}`}>
             <div className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden mb-4">

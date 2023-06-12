@@ -85,7 +85,7 @@ export default function NewPlacePage() {
   }
 
   return (
-    <div className="grid grid-cols-[2fr_4fr_2fr]">
+    <div className="grid grid-cols-[2fr_4fr_2fr] bg-gray-100 -mx-8 mt-4">
     <div></div>
     <div className="mx-12">
       <form onSubmit={savePlace}>
