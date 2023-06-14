@@ -30,7 +30,7 @@ export default function SingleBookingPage () {
         <div className="my-8">
             <h1 className="text-3xl">{booking.place.title}</h1>
             <AddressLink>{booking.place.address}</AddressLink>
-            <div className="bg-gray-200 p-6 mb-6 rounded-2xl flex justify-between">
+            <div className="bg-gray-100 p-6 mb-6 rounded-2xl flex justify-between">
                 <div>
                     <h2 className="text-xl mb-4">Informacje o rezerwacji</h2>
                     <BookingDates booking={booking}/>

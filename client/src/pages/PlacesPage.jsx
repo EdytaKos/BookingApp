@@ -15,7 +15,7 @@ export default function PlacesPage() {
   }, []);
 
   return (
-    <div className="grid grid-cols-[1fr_10fr_1fr]">
+    <div className="grid grid-cols-[1fr_3fr_1fr]">
     <div></div>
     <div>
       <div className="text-center mx-8">
@@ -45,14 +45,14 @@ export default function PlacesPage() {
           places.map((place) => (
             <Link
               to={"/account/places/" + place._id}
-              className="flex cursor-pointer gap-4 bg-gray-100 p-4 rounded-2xl"
+              className="flex gap-4 bg-gray-100 rounded-2xl overflow-hidden mb-4"
             >
               <div className="flex w-32 h-32 bg-gray-300 shrink-0">
                 <PlaceImg place={place}/>
               </div>
               <div className="grow-0 shrink">
                 <h2 className="text-xl">{place.title}</h2>
-                <p className="text-sm mt-2">{place.description}</p>
+                <p className="text-sm mt-2 border-t border-gray-300">{place.description}</p>
               </div>
             </Link>
           ))}
